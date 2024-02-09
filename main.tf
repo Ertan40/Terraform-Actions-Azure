@@ -6,6 +6,13 @@ terraform {
       version = "3.89.0"
     }
   }
+  # here after creating storage and container in it
+  backend "azurerm" {
+    resource_group_name  = "StorageRG"
+    storage_account_name = "taskboardstorage1"
+    container_name       = "taskboardcontainer"
+    key                  = "terraform.tfstate"
+  }
 }
 provider "azurerm" {
   features {}
@@ -76,4 +83,3 @@ resource "azurerm_app_service_source_control" "github" {
   branch                 = "main"
   use_manual_integration = true
 }
-
